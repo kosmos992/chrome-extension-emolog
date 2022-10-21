@@ -21,6 +21,13 @@ const update = e =>
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(e),
   });
+const addTodo = e => {
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(e),
+  });
+};
 
 const Todo = () => {
   const [todoList, setTodoList] = useState([]);
@@ -48,11 +55,7 @@ const Todo = () => {
       done: false,
     };
     newTodoList.push(theEntry);
-    fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(theEntry),
-    });
+    addTodo(theEntry);
     setTodoList(newTodoList);
     entryReset();
   };
