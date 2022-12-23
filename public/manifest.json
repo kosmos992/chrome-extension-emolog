@@ -1,7 +1,8 @@
 {
   "short_name": "omu",
   "name": "omu",
-  "description": "Chrome homepage",
+  "icons": ["omu.ico", "omu2.ico"],
+  "description": "Chrome homepage extension, in which you can record your daily moods and feelings.",
   "version": "0.0.0.1",
   "manifest_version": 3,
   "chrome_url_overrides": {
