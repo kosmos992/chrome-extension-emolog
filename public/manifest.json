@@ -1,13 +1,17 @@
 {
-  "short_name": "Emo",
-  "name": "Emolog",
+  "short_name": "omu",
+  "name": "omu",
   "description": "Chrome homepage",
-  "version": "0.1",
+  "version": "0.0.0.1",
   "manifest_version": 3,
   "chrome_url_overrides": {
     "newtab": "index.html"
   },
+  "action": {
+    "default_icon": "omu2.ico"
+  },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+  },
+  "permissions": ["storage"]
 }
