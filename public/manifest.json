@@ -1,7 +1,7 @@
 {
   "short_name": "omu",
   "name": "omu",
-  "icons": ["omu.ico", "omu2.ico"],
+  "icons": { "16": "omu2.ico" },
   "description": "Chrome homepage extension, in which you can record your daily moods and feelings.",
   "version": "0.0.0.1",
   "manifest_version": 3,
@@ -9,7 +9,7 @@
     "newtab": "index.html"
   },
   "action": {
-    "default_icon": "omu2.ico"
+    "default_icon": { "16": "omu2.ico" }
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
