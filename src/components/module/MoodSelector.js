@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import dayjs from 'dayjs';
 import { selectPalettes } from '../../redux/slice';
 
-const MoodSelector = ({ lookbackRefresher, paletteRefresh }) => {
+const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
   const palettes = useSelector(selectPalettes);
   const dispatch = useDispatch();
   const { isOpen } = useSelector(selectModal);
@@ -100,6 +100,7 @@ const MoodSelector = ({ lookbackRefresher, paletteRefresh }) => {
           moods={moods}
           submitHandler={submitHandler}
           lookbackRefresher={lookbackRefresher}
+          dataRefresher={dataRefresher}
         />
         <CardContainer fade={fade}>
           <Mood

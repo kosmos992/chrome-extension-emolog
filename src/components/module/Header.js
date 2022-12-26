@@ -28,7 +28,7 @@ const GnbLayout = styled.div`
   min-width: 120px;
 `;
 
-function Header() {
+function Header({ dataRefresh }) {
   const [isOpen, setIsOpen] = useState(false);
   const onClick = () => {
     setIsOpen(!isOpen);
@@ -62,7 +62,7 @@ function Header() {
         <div style={{ width: '120px' }}>
           <GnbLayout ref={ref}>
             <User onClick={onClick}>USERNAME</User>
-            {isOpen ? <Nav /> : null}
+            {isOpen ? <Nav dataRefresh={dataRefresh} /> : null}
           </GnbLayout>
         </div>
       </HeaderWrapper>

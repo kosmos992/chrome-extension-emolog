@@ -21,12 +21,18 @@ const Home = () => {
     setPaletteRefresh(paletteRefresh * -1);
   };
 
+  const [dataRefresh, setDataRefresh] = useState(-1);
+  const dataRefresher = () => {
+    setDataRefresh(dataRefresh * -1);
+  };
+
   return (
     <Browser>
-      <Header />
+      <Header dataRefresh={dataRefresh} />
       <ContentLayout>
         <MoodSelector
           lookbackRefresher={lookbackRefresher}
+          dataRefresher={dataRefresher}
           paletteRefresh={paletteRefresh}
         />
         <GlobalModal

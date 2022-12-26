@@ -4,9 +4,13 @@ import {
   faStore,
   faCalendarDays,
   faFilm,
+  faDownload,
 } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../redux/modalSlice';
+import { exportData } from '../../api/ExportDataApi';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const Bubble = styled.nav`
   max-width: 120px;
@@ -52,8 +56,17 @@ const DarkIcon = styled.span`
     }
   }
 `;
-const Nav = () => {
+const Nav = ({ dataRefresh }) => {
   const dispatch = useDispatch();
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const totalData = await exportData();
+      setData(totalData);
+    };
+    loadData();
+  }, [dataRefresh]);
 
   const handleThemeModal = () => {
     dispatch(
@@ -80,6 +93,17 @@ const Nav = () => {
     );
   };
 
+  const exportAll = () => {
+    const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
+      JSON.stringify(data)
+    )}`;
+    const link = document.createElement('a');
+    link.href = jsonString;
+    link.download = 'data.json';
+
+    link.click();
+  };
+
   return (
     <>
       <Bubble>
@@ -102,6 +126,12 @@ const Nav = () => {
               <FontAwesomeIcon icon={faFilm} size="lg" />
             </DarkIcon>
             <FontSize14>일년기록</FontSize14>
+          </NavItem>
+          <NavItem onClick={exportAll}>
+            <DarkIcon>
+              <FontAwesomeIcon icon={faDownload} size="lg" />
+            </DarkIcon>
+            <FontSize14>내보내기</FontSize14>
           </NavItem>
         </ul>
       </Bubble>

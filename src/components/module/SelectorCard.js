@@ -22,6 +22,7 @@ const SelectorCard = ({
   moods,
   submitHandler,
   lookbackRefresher,
+  dataRefresher,
 }) => {
   const dateString = dayjs(new Date()).format('M월 D일');
   const [allmoods, setAllmoods] = useState([]);
@@ -55,6 +56,7 @@ const SelectorCard = ({
         lookbackRefresher();
         submitHandler();
         setAllmoods(newAllMoods);
+        dataRefresher();
       });
   };
 
