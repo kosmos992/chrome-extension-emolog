@@ -35,7 +35,7 @@ const LookBack = ({ lookbackRefresh }) => {
       }
     });
     chrome.storage.local.get(['allMood']).then(res => {
-      console.log(res.allMood);
+      // console.log(res.allMood);
       setData(
         res.allMood.map(each => {
           each.date = dayjs(each.date).format('YYYY-MM-DD');
@@ -56,7 +56,7 @@ const LookBack = ({ lookbackRefresh }) => {
 
   const withoutDup = data.filter(e => e.date === selected);
   const selectedData = withoutDup.pop();
-  console.log(selectedData);
+  // console.log(selectedData);
 
   const extent = [];
   for (const each of data) {
@@ -93,13 +93,13 @@ const LookBack = ({ lookbackRefresh }) => {
     const filtered = data.filter(
       ea => Number(dayjs(ea.date).format('YYYY')) === year
     );
-    console.log(filtered);
+    // console.log(filtered);
     for (const each of filtered) {
       if (each.moodCode !== null) {
         moods[moodList[each.moodCode]] += 1;
       }
     }
-    console.log(moods);
+    // console.log(moods);
 
     const moodsKeys = Object.keys(moods);
     const moodsValues = Object.values(moods);

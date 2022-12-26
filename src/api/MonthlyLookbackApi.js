@@ -24,8 +24,8 @@ export const topFourColors = async () => {
     for (let el of colorSorted) {
       topFourColors.push(Number(el[0]));
     }
-    console.log(paletteCode);
-    console.log(topFourColors);
+    // console.log(paletteCode);
+    // console.log(topFourColors);
     return [paletteCode, topFourColors]; // 상위 4개 색상
   });
 };

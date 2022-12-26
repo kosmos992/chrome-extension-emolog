@@ -43,8 +43,8 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
       }
     });
     chrome.storage.local.get(['today']).then(res => {
-      console.log(res.today);
-      console.log(today);
+      // console.log(res.today);
+      // console.log(today);
       if (res.today === undefined || res.today.date !== today) {
         return;
       }

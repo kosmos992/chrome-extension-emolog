@@ -69,7 +69,7 @@ export const ThemeStore = ({ paletteRefresher }) => {
   const dispatch = useDispatch();
   const palettes = useSelector(selectPalettes);
 
-  const [myPalette, setMyPalette] = useState(null);
+  const [myPalette, setMyPalette] = useState(0);
   const [carouselIndex, setIndex] = useState(0);
 
   const [paletteEntry, SetPaletteEntry] = useState(0);
@@ -113,7 +113,7 @@ export const ThemeStore = ({ paletteRefresher }) => {
       if (res.paletteCode !== undefined) {
         setMyPalette(res.paletteCode);
       } else {
-        setMyPalette(null);
+        setMyPalette(0);
       }
     });
   }, [refresher]);

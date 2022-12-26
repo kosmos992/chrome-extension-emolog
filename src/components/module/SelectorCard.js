@@ -32,7 +32,7 @@ const SelectorCard = ({
       if (Object.keys(res).length === 0) {
         return;
       }
-      console.log(res.allMood);
+      // console.log(res.allMood);
       setAllmoods(res.allMood);
     });
   }, []);
@@ -43,15 +43,15 @@ const SelectorCard = ({
     const body = reason;
     const newAllMoods = allmoods.filter(each => each.date !== today);
     newAllMoods.push({ date: today, moodCode, body });
-    console.log(newAllMoods);
+    // console.log(newAllMoods);
     chrome.storage.local
       .set({
         today: { date: today, moodCode, body },
         allMood: newAllMoods,
       })
       .then(() => {
-        chrome.storage.local.get(['allMood']).then(res => console.log(res));
-        chrome.storage.local.get(null).then(res => console.log(res));
+        // chrome.storage.local.get(['allMood']).then(res => console.log(res));
+        // chrome.storage.local.get(null).then(res => console.log(res));
         setFade(true);
         lookbackRefresher();
         submitHandler();

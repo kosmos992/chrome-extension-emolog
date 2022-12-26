@@ -1,7 +1,7 @@
 import { ResponsivePie } from '@nivo/pie';
 
 const Pie = ({ pieData, palette }) => {
-  console.log(pieData);
+  // console.log(pieData);
   return (
     <ResponsivePie
       data={pieData.map(each => {

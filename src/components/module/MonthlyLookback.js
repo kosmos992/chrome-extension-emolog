@@ -71,8 +71,8 @@ const MonthlyLookback = () => {
   useEffect(() => {
     const loadData = async () => {
       const [code, topColorArr] = await topFourColors();
-      console.log(code);
-      console.log(topColorArr);
+      // console.log(code);
+      // console.log(topColorArr);
       if (topColorArr.length >= 4) {
         setTopColors([
           `${palettes[code][topColorArr[0]]}`,
