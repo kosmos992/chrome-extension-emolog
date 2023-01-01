@@ -10,7 +10,7 @@ const MODAL_TYPES = {
   LookbackModal: 'LookbackModal',
 };
 
-function GlobalModal({ lookbackRefresh, paletteRefresher }) {
+function GlobalModal({ lookbackRefresh, paletteRefresher, setHidenCard }) {
   const MODAL_COMPONENTS = [
     {
       type: MODAL_TYPES.ThemeModal,
@@ -18,11 +18,16 @@ function GlobalModal({ lookbackRefresh, paletteRefresher }) {
     },
     {
       type: MODAL_TYPES.MonthlyModal,
-      component: <MonthlyLookback />,
+      component: <MonthlyLookback setHidenCard={setHidenCard} />,
     },
     {
       type: MODAL_TYPES.LookbackModal,
-      component: <LookBack lookbackRefresh={lookbackRefresh} />,
+      component: (
+        <LookBack
+          lookbackRefresh={lookbackRefresh}
+          setHidenCard={setHidenCard}
+        />
+      ),
     },
   ];
   const { modalType, isOpen } = useSelector(selectModal);
@@ -35,7 +40,7 @@ function GlobalModal({ lookbackRefresh, paletteRefresher }) {
   const renderModal = () => {
     return findModal.component;
   };
-  return <div style={{ display: 'flex' }}>{renderModal()}</div>;
+  return <div style={{ display: 'flex', width: '100%' }}>{renderModal()}</div>;
 }
 
 export default GlobalModal;
