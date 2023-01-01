@@ -56,7 +56,7 @@ const DarkIcon = styled.span`
     }
   }
 `;
-const Nav = ({ dataRefresh }) => {
+const Nav = ({ dataRefresh, setHidenCard }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState(null);
 
@@ -85,6 +85,7 @@ const Nav = ({ dataRefresh }) => {
     );
   };
   const handleLookbackModal = () => {
+    setHidenCard(true);
     dispatch(
       openModal({
         modalType: 'LookbackModal',

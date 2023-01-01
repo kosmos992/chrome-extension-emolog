@@ -48,7 +48,7 @@ const Home = () => {
 
   return (
     <Browser>
-      <Header dataRefresh={dataRefresh} />
+      <Header dataRefresh={dataRefresh} setHidenCard={setHidenCard} />
       <ContentLayout>
         {hidenCard ? null : (
           <div>

@@ -213,8 +213,8 @@ const FriendModal = ({ children }) => {
 const LookBackModal = ({ children, setHidenCard }) => {
   const dispatch = useDispatch();
   const handleCloseModal = () => {
-    dispatch(closeModal());
     setHidenCard(false);
+    dispatch(closeModal());
   };
   return (
     <Calendar>
