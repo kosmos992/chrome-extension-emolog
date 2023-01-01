@@ -12,7 +12,7 @@ import ActivityCalendar from './ActivityCalendar';
 import { useSelector } from 'react-redux';
 import { selectPalettes } from '../../redux/slice';
 
-const LookBack = ({ lookbackRefresh }) => {
+const LookBack = ({ lookbackRefresh, setHidenCard }) => {
   const palettes = useSelector(selectPalettes);
   const moodList = [
     '기쁨',
@@ -125,7 +125,7 @@ const LookBack = ({ lookbackRefresh }) => {
   };
 
   return (
-    <LookBackModal>
+    <LookBackModal setHidenCard={setHidenCard}>
       <Wrapper>
         {data.length === 0 ? (
           <Announcement>기록이 존재하지 않습니다</Announcement>
