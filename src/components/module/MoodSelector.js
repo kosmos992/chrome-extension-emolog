@@ -111,7 +111,9 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
           />
           <Info>
             <Type>{moods[idx]}</Type>
-            <Hexcode>{palette[idx]}</Hexcode>
+            <Hexcode onClick={() => handleViewDetails()}>
+              {palette[idx]}
+            </Hexcode>
             <Contents
               onClick={() => handleViewDetails()}
               viewDetails={viewDetails}
@@ -263,7 +265,7 @@ const Contents = styled.div`
   animation-timing-function: ease-in-out;
   @media screen and (max-width: 767px) {
     height: ${({ viewDetails }) =>
-      viewDetails ? '210px' : '4px'}; //460 - 94 - 10
+      viewDetails ? '210px' : '2px'}; //460 - 94 - 10
     font-size: 18px;
     line-height: 22px;
   }
