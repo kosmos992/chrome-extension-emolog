@@ -15,7 +15,15 @@ const BORDER = {
   `,
 };
 
-const InputItem = styled.input`
+interface InputProps {
+  placeHolder?: string;
+  value: any;
+  size: 'long';
+  border: 'shadow' | 'transparent';
+  color: string;
+};
+
+const InputItem = styled.input<{sizeStyle: string, borderStyle: string}>`
   ${props => props.sizeStyle};
   ${props => props.borderStyle};
   height: var(--input-height);
@@ -28,7 +36,7 @@ const InputItem = styled.input`
   background-color: ${props => (props.color ? props.color : 'white')};
 `;
 
-const Input = ({ placeHolder, value, size, border, color }) => {
+const Input = ({ placeHolder, value, size, border, color }: InputProps) => {
   const sizeStyle = SIZES[size];
   const borderStyle = BORDER[border];
   return (

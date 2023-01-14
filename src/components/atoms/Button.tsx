@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 const SIZES = {
   circle: css`
@@ -26,9 +26,17 @@ const FONTSIZES = {
   `,
 };
 
-function Button({ size, fontsize, children, onClick, disabled }) {
+export interface ButtonProps {
+  size?: 'circle' | 'long';
+  fontSize?: 'little' | 'middle' | 'large';
+  children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+}
+
+function Button({ size, fontSize, children, onClick, disabled }: ButtonProps) {
   const sizeStyle = SIZES[size];
-  const fontSizeStyle = FONTSIZES[fontsize];
+  const fontSizeStyle = FONTSIZES[fontSize];
 
   return (
     <Btn
@@ -42,9 +50,9 @@ function Button({ size, fontsize, children, onClick, disabled }) {
   );
 }
 
-const Btn = styled.button`
-  ${props => props.sizeStyle}
-  ${props => props.fontSizeStyle}
+const Btn = styled.button<{sizeStyle, fontSizeStyle}>`
+  ${(props) => props.sizeStyle}
+  ${(props) => props.fontSizeStyle}
 
   padding: var(--button-padding);
   border-radius: var(--button-radius, 8px);
