@@ -4,7 +4,6 @@ import {
   DEFAULT_LABELS,
   DEFAULT_WEEKDAY_LABELS,
   generateEmptyData,
-  getClassName,
   getMonthLabels,
   getTheme,
   groupByWeeks,
@@ -12,7 +11,6 @@ import {
   NAMESPACE,
 } from './utils';
 import { toast } from 'react-toastify';
-import styles from './styles.module.css';
 import tinycolor from 'tinycolor2';
 import dayjs from 'dayjs';
 
@@ -22,7 +20,6 @@ function ActivityCalendar({
   blockMargin,
   blockRadius,
   blockSize,
-  children,
   color,
   data,
   dateFormat,
@@ -44,7 +41,7 @@ function ActivityCalendar({
   if (data.length === 0) return null;
 
   const weeks = groupByWeeks(data, weekStart, year);
-  // console.log(weeks);
+  console.log(weeks);
   const textHeight = hideMonthLabels ? 0 : fontSize + 2 * blockMargin;
   const theme = getTheme(themeProp, color);
   const labels = Object.assign({}, DEFAULT_LABELS, labelsProp);
@@ -70,7 +67,7 @@ function ActivityCalendar({
     return (
       <>
         {showWeekdayLabels && (
-          <g className={getClassName('legend-weekday')} style={style}>
+          <g style={style}>
             {weeks[1].map((day, y) => {
               if (!day || y % 2 === 0) {
                 return null;
@@ -98,7 +95,7 @@ function ActivityCalendar({
           </g>
         )}
         {!hideMonthLabels && (
-          <g className={getClassName('legend-month')} style={style}>
+          <g style={style}>
             {getMonthLabels(weeks, labels.months).map(
               ({ text, x }, index, labels) => {
                 // Skip the first month label if there's not enough space to the next one
@@ -138,12 +135,6 @@ function ActivityCalendar({
             return null;
           }
 
-          const style = loading
-            ? {
-                animation: `${styles.loadingAnimation} 1.5s ease-in-out infinite`,
-                animationDelay: `${weekIndex * 20 + dayIndex * 20}ms`,
-              }
-            : undefined;
           // fill={palette[Number(data.moodPaletteDetails.moodCode[3])]}
           const color =
             day.moodCode !== undefined ? palette[day.moodCode] : '#eeeeee';
@@ -159,7 +150,6 @@ function ActivityCalendar({
               fill={color}
               rx={blockRadius}
               ry={blockRadius}
-              className={styles.block}
               data-date={day.date}
               key={day.date}
               style={style}
@@ -192,15 +182,12 @@ function ActivityCalendar({
     }
 
     return (
-      <footer
-        className={getClassName('footer', styles.footer)}
-        style={{ marginTop: 2 * blockMargin, fontSize }}
-      >
+      <footer style={{ marginTop: 2 * blockMargin, fontSize }}>
         {/* Placeholder */}
         {loading && <div>&nbsp;</div>}
 
         {!loading && !hideTotalCount && (
-          <div className={getClassName('count')}>
+          <div>
             {labels.totalCount
               ? labels.totalCount
                   .replace('{{count}}', String(totalCount))
@@ -228,18 +215,12 @@ function ActivityCalendar({
       style={{ ...style, ...additionalStyles }}
       {...otherProps}
     >
-      <svg
-        className={getClassName('calendar', styles.calendar)}
-        width={width}
-        height={height}
-        viewBox={`0 0 ${width} ${height}`}
-      >
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         {!loading && renderLabels()}
         {renderBlocks()}
       </svg>
 
       {renderFooter()}
-      {children}
     </article>
   );
 }

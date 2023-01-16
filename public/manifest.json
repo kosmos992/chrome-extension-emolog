@@ -2,7 +2,7 @@
   "short_name": "omu",
   "name": "omu",
   "description": "Chrome homepage extension, where you can track your daily moods and feelings.",
-  "version": "0.0.0.2",
+  "version": "0.0.0.5",
   "manifest_version": 3,
   "chrome_url_overrides": {
     "newtab": "index.html"

@@ -7,6 +7,7 @@ import subWeeks from 'date-fns/subWeeks';
 import nextDay from 'date-fns/nextDay';
 import getMonth from 'date-fns/getMonth';
 import color from 'tinycolor2';
+import { moodDataSet } from '../../api/MonthlyLookbackApi';
 
 const DEFAULT_THEME = createCalendarTheme('#042a33');
 export const NAMESPACE = 'ActivityCalendar';
@@ -43,7 +44,7 @@ export const DEFAULT_LABELS = {
   totalCount: '{{year}}년, {{count}}일의 기록',
 };
 
-export function normalizeCalendarDays(days, year) {
+export function normalizeCalendarDays(days: Array<moodDataSet>, year: number) {
   const daysMap = days.reduce((map, day) => {
     map.set(day.date, day);
     return map;
@@ -64,10 +65,15 @@ export function normalizeCalendarDays(days, year) {
     };
   });
 }
-
-export function groupByWeeks(days, weekStart, year) {
+interface newMoodDataSet extends moodDataSet {
+  count: number;
+}
+export function groupByWeeks(
+  days: Array<newMoodDataSet>,
+  weekStart,
+  year: number
+) {
   if (days.length === 0) return [];
-
   // The calendar expects a continuous sequence of days, so fill gaps with empty activity.
   const normalizedDays = normalizeCalendarDays(days, year);
 
@@ -158,14 +164,6 @@ export function getTheme(theme, color) {
   }
 
   return DEFAULT_THEME;
-}
-
-export function getClassName(name, styles) {
-  if (styles) {
-    return `${NAMESPACE}__${name} ${styles}`;
-  }
-
-  return `${NAMESPACE}__${name}`;
 }
 
 export function generateEmptyData() {

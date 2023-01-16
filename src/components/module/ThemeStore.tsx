@@ -130,7 +130,7 @@ export const ThemeStore = ({ paletteRefresher }) => {
         <BtnContainer>
           <Button
             size="long"
-            fontsize="middle"
+            fontSize="middle"
             onClick={() => handleSet(paletteEntry)}
             disabled={myPalette === carouselIndex}
           >
@@ -153,7 +153,7 @@ export const ThemeStore = ({ paletteRefresher }) => {
         />
       </ArrowContainer>
       <CarouselContainer>
-        <CircleCarousel carouselIndex={carouselIndex} palettes={palettes} />
+        <CircleCarousel carouselIndex={carouselIndex} />
       </CarouselContainer>
     </StoreModal>
   );

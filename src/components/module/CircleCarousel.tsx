@@ -77,6 +77,7 @@ const CircleCarousel = ({ carouselIndex }) => {
     prevItem: 7,
     lastItem: 7,
     nextItem: 1,
+    carousel: [],
   });
 
   useEffect(() => {
@@ -123,10 +124,10 @@ const CircleCarousel = ({ carouselIndex }) => {
   return (
     <CarouselContainer>
       <CarouselBtnContainer>
-        <Button size="long" fontsize="little" onClick={next}>
+        <Button size="long" fontSize="little" onClick={next}>
           다음
         </Button>
-        <Button size="long" fontsize="little" onClick={prev}>
+        <Button size="long" fontSize="little" onClick={prev}>
           이전
         </Button>
       </CarouselBtnContainer>

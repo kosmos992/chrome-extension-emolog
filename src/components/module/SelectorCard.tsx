@@ -64,24 +64,20 @@ const SelectorCard = ({
     <Wrapper fade={fade}>
       <Selector>
         <LeftRightContainer>
-          <LeftRight darkmode={darkmode} fade={fade}>
+          <LeftRight darkmode={darkmode}>
             <FontAwesomeIcon icon={faChevronLeft} onClick={() => toLeft()} />
           </LeftRight>
         </LeftRightContainer>
-        <Mood darkmode={darkmode} fade={fade}>
-          <Type darkmode={darkmode} fade={fade}>
-            {moods[idx]}
-          </Type>
+        <Mood darkmode={darkmode}>
+          <Type darkmode={darkmode}>{moods[idx]}</Type>
         </Mood>
         <LeftRightContainer>
-          <LeftRight darkmode={darkmode} fade={fade}>
+          <LeftRight darkmode={darkmode}>
             <FontAwesomeIcon icon={faChevronRight} onClick={() => toRight()} />
           </LeftRight>
         </LeftRightContainer>
       </Selector>
-      <Today darkmode={darkmode} fade={fade}>
-        {dateString}
-      </Today>
+      <Today darkmode={darkmode}>{dateString}</Today>
       <InfoContainer>
         <Info
           placeholder="무슨 일이 있었나요? 생략해도 돼요."
@@ -108,8 +104,9 @@ const SelectorCard = ({
 };
 
 export default SelectorCard;
+// const InputItem = styled.input<{ sizeStyle: string; borderStyle: string }>`
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ fade: boolean }>`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -125,7 +122,7 @@ const Selector = styled.div`
   flex-direction: row;
 `;
 
-const LeftRight = styled.button`
+const LeftRight = styled.button<{ darkmode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -145,7 +142,7 @@ const LeftRight = styled.button`
   }
 `;
 
-const Mood = styled.div`
+const Mood = styled.div<{ darkmode: boolean }>`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
@@ -165,7 +162,7 @@ const Mood = styled.div`
   margin: 40px 20px 15px 20px;
 `;
 
-const Type = styled.div`
+const Type = styled.div<{ darkmode: boolean }>`
   height: 40px;
   line-height: 40px;
   font-size: 40px;
@@ -180,7 +177,7 @@ const Type = styled.div`
   transition: color 0.3s;
 `;
 
-const Today = styled.div`
+const Today = styled.div<{ darkmode: boolean }>`
   font-size: 18px;
   -webkit-user-select: none;
   user-select: none;
@@ -202,7 +199,7 @@ const InfoContainer = styled.div`
   margin: 15px 40px 40px 40px;
 `;
 
-const Info = styled.textarea`
+const Info = styled.textarea<{ fade: boolean; darkmode: boolean }>`
   width: 85%;
   padding: 10px;
   font-size: 13px;
@@ -251,7 +248,7 @@ const LeftRightContainer = styled.div`
   justify-content: center;
   height: 100%;
 `;
-const Button = styled.button`
+const Button = styled.button<{ fade: boolean; darkmode: boolean }>`
   width: 40px;
   height: 40px;
   display: flex;
