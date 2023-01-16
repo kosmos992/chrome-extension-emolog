@@ -11,6 +11,7 @@ import Pie from './Charts';
 import ActivityCalendar from './ActivityCalendar';
 import { useSelector } from 'react-redux';
 import { selectPalettes } from '../../redux/slice';
+import { debounce } from 'lodash';
 
 const LookBack = ({ lookbackRefresh, setHidenCard }) => {
   const palettes = useSelector(selectPalettes);
@@ -25,6 +26,22 @@ const LookBack = ({ lookbackRefresh, setHidenCard }) => {
     '희망',
   ];
   const [palette, setPalette] = useState([]);
+  const [style, setStyle] = useState({ margin: 5, size: 11 });
+
+  const windowResize = debounce(() => {
+    if (window.innerWidth > 1024) {
+      setStyle({ margin: 5, size: 11 });
+    } else {
+      setStyle({ margin: 3, size: 7 });
+    }
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener('resize', windowResize);
+    return () => {
+      window.removeEventListener('resize', windowResize);
+    };
+  }, []);
 
   useEffect(() => {
     chrome.storage.local.get(['paletteCode']).then(res => {
@@ -43,7 +60,7 @@ const LookBack = ({ lookbackRefresh, setHidenCard }) => {
           return each;
         })
       );
-      handleSetPieData(res.allMood, Number(year), palette);
+      handleSetPieData(res.allMood, Number(year));
     });
   }, [lookbackRefresh]);
 
@@ -151,8 +168,20 @@ const LookBack = ({ lookbackRefresh, setHidenCard }) => {
                 )}
                 setSelected={setSelected}
                 showWeekdayLabels={true}
-                blockMargin={5}
-                blockSize={11}
+                blockMargin={style.margin}
+                blockSize={style.size}
+                blockRadius={undefined}
+                color={undefined}
+                dateFormat={undefined}
+                fontSize={undefined}
+                hideColorLegend={undefined}
+                hideMonthLabels={undefined}
+                hideTotalCount={undefined}
+                loading={undefined}
+                labels={undefined}
+                style={undefined}
+                theme={undefined}
+                weekStart={undefined}
               />
 
               <LeftRightContainer>
@@ -168,7 +197,7 @@ const LookBack = ({ lookbackRefresh, setHidenCard }) => {
             <StatisticsContainer>
               <PieCard>
                 <div style={{ fontSize: '15px' }}>{year}년 회고</div>
-                <Pie pieData={pieData} year={year} palette={palette} />
+                <Pie pieData={pieData} palette={palette} />
               </PieCard>
               <MoodCard>
                 <Title>하루 돌아보기</Title>
@@ -285,7 +314,7 @@ const LeftRight = styled.button`
   }
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{ viewDetails: boolean }>`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -307,7 +336,7 @@ const Spacer = styled.div`
   height: 13px;
 `;
 
-const Mood = styled.div`
+const Mood = styled.div<{ viewDetails: boolean }>`
   width: ${({ viewDetails }) => (viewDetails ? '330px' : '180px')};
   height: 195px;
   margin: 5px 5px 0 5px;
@@ -337,7 +366,7 @@ const Hexcode = styled.div`
   font-weight: 300;
   margin-bottom: 5px;
 `;
-const Contents = styled.div`
+const Contents = styled.div<{ viewDetails: boolean }>`
   height: ${({ viewDetails }) =>
     viewDetails ? '197px' : '22px'}; //460 - 94 - 10
 

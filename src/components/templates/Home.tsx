@@ -62,7 +62,6 @@ const Home = () => {
         <GlobalModal
           setHidenCard={setHidenCard}
           lookbackRefresh={lookbackRefresh}
-          lookbackRefresher={lookbackRefresher}
           paletteRefresher={paletteRefresher}
         />
       </ContentLayout>

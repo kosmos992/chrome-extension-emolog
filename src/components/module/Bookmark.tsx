@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import BookmarkHandle from './BookmarkHandle';
-import BookmarkItem from '../module/BookmarkItem';
+import BookmarkItem from './BookmarkItem';
 
 const BookmarkBox = styled.div`
   margin-bottom: 8px;

@@ -1,4 +1,9 @@
-/* global chrome */
+export interface moodDataSet {
+  body: string;
+  date: string;
+  moodCode: number;
+}
+
 export const topFourColors = async () => {
   const paletteCode = await chrome.storage.local
     .get(['paletteCode'])
@@ -11,14 +16,18 @@ export const topFourColors = async () => {
     });
 
   return await chrome.storage.local.get(['allMood']).then(res => {
-    const colorCodeArr = res.allMood.map(each => each.moodCode);
+    console.log(res.allMood);
+    const colorCodeArr = res.allMood.map((each: moodDataSet) => each.moodCode);
     // 색상별 개수 요약 {"a":2,"b":2,"c":1}
     let colorSummary = {};
-    colorCodeArr.forEach(x => {
+    colorCodeArr.forEach((x: number) => {
       colorSummary[x] = (colorSummary[x] || 0) + 1;
     });
+    console.log(Object.entries(colorSummary));
     const colorSorted = Object.entries(colorSummary).sort(
-      (a, b) => b[1] - a[1]
+      (a: [string, number], b: [string, number]) => {
+        return b[1] - a[1];
+      }
     );
     const topFourColors = [];
     for (let el of colorSorted) {

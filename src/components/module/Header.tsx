@@ -33,7 +33,7 @@ function Header({ dataRefresh, setHidenCard }) {
   const onClick = () => {
     setIsOpen(!isOpen);
   };
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
   const clickOut = e => {
     if (isOpen && ref.current && !ref.current.contains(e.target)) {
       setIsOpen(false);

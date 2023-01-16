@@ -18,12 +18,13 @@ const BORDER = {
 interface InputProps {
   placeHolder?: string;
   value: any;
-  size: 'long';
+  size?: 'long';
   border: 'shadow' | 'transparent';
   color: string;
-};
+  name?: string;
+}
 
-const InputItem = styled.input<{sizeStyle: string, borderStyle: string}>`
+const InputItem = styled.input<{ sizeStyle: string; borderStyle: string }>`
   ${props => props.sizeStyle};
   ${props => props.borderStyle};
   height: var(--input-height);

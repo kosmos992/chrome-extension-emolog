@@ -56,7 +56,7 @@ const ButtonContain = styled.span`
 const MonthlyLookback = ({ setHidenCard }) => {
   const dispatch = useDispatch();
   const palettes = useSelector(selectPalettes);
-  const [topColors, setTopColors] = useState();
+  const [topColors, setTopColors] = useState<string[]>([]);
   const currentMonth = dayjs(new Date()).format('MM');
   const option = {
     fps: 60,

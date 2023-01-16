@@ -68,6 +68,7 @@ const initialState = {
 const slice = createSlice({
   name: 'palettes',
   initialState,
+  reducers: undefined,
 });
 
 export const selectPalettes = state => state.palettes.palettes;

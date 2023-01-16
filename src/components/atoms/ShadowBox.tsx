@@ -2,16 +2,16 @@ import styled, { css } from 'styled-components';
 
 interface ContentBoxProps {
   children: React.ReactNode;
-  onClick: React.MouseEventHandler;
-  size: 'long';
-};
+  onClick?: React.MouseEventHandler;
+  size?: 'long';
+}
 
 const SIZES = {
   long: css`
     --shadowBox-height: 100%;
   `,
 };
-const Box = styled.div<{sizeStyle}>`
+const Box = styled.div<{ sizeStyle }>`
   ${props => props.sizeStyle};
   margin: 16px;
   border-radius: 10px;

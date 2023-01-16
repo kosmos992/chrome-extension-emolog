@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
 const SIZES = {
   circle: css`
@@ -50,9 +50,9 @@ function Button({ size, fontSize, children, onClick, disabled }: ButtonProps) {
   );
 }
 
-const Btn = styled.button<{sizeStyle, fontSizeStyle}>`
-  ${(props) => props.sizeStyle}
-  ${(props) => props.fontSizeStyle}
+const Btn = styled.button<{ sizeStyle; fontSizeStyle }>`
+  ${props => props.sizeStyle}
+  ${props => props.fontSizeStyle}
 
   padding: var(--button-padding);
   border-radius: var(--button-radius, 8px);

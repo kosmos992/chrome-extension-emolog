@@ -67,8 +67,8 @@ const Bm = styled.div`
 const BookmarkCreate = ({ setAddBtnIsOpen, booksArr, setBookmarkArr }) => {
   const [bookName, bookNameBind, nameReset] = useInput('');
   const [bookUrl, bookUrlBind, urlReset] = useInput('');
-  const [validation, setValidation] = useState();
-  const [nameValidation, setNameValidation] = useState();
+  const [validation, setValidation] = useState(undefined);
+  const [nameValidation, setNameValidation] = useState(undefined);
 
   const handleBookmarkClose = () => {
     setAddBtnIsOpen(false);
@@ -134,10 +134,10 @@ const BookmarkCreate = ({ setAddBtnIsOpen, booksArr, setBookmarkArr }) => {
             <label htmlFor="name">
               <span>이름</span>
               <Input
-                name="name"
                 value={bookNameBind}
                 border="shadow"
                 color="#f6f6f6"
+                name="name"
               />
             </label>
             {/* {nameValidation ? null : (

@@ -57,7 +57,6 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
   const [idx, setIdx] = useState(0);
   const [darkmode, setDarkmode] = useState(false);
   const [reason, setReason] = useState('');
-  const [moodId, setMoodId] = useState(false);
 
   const toRight = () => {
     setIdx((idx + 1) % 8);
@@ -87,9 +86,7 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
       <Slider fade={fade}>
         <SelectorCard
           darkmode={darkmode}
-          palettes={palettes}
           idx={idx}
-          setIdx={setIdx}
           toLeft={toLeft}
           toRight={toRight}
           setDarkmode={setDarkmode}
@@ -102,7 +99,7 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
           lookbackRefresher={lookbackRefresher}
           dataRefresher={dataRefresher}
         />
-        <CardContainer fade={fade}>
+        <CardContainer>
           <Mood
             color={palette[idx]}
             onClick={() => {
@@ -129,7 +126,7 @@ const MoodSelector = ({ lookbackRefresher, dataRefresher, paletteRefresh }) => {
 
 export default MoodSelector;
 
-const Slider = styled.div`
+const Slider = styled.div<{ fade: boolean }>`
   transform: ${({ fade }) =>
     fade ? `translateY(${-50}%)` : `translateY(${0}%)`};
   display: flex;
@@ -139,7 +136,7 @@ const Slider = styled.div`
   transition: transform 0.3s;
 `;
 
-const SelectorContainer = styled.div`
+const SelectorContainer = styled.div<{ color: string; fade: boolean }>`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -204,7 +201,7 @@ const CardContainer = styled.div`
   }
 `;
 
-const Mood = styled.div`
+const Mood = styled.div<{ color: string }>`
   width: 300px;
   height: 300px;
   margin: 10px 10px 0 10px;
@@ -257,7 +254,7 @@ const Hexcode = styled.div`
   font-weight: 300;
   font-size: 18px;
 `;
-const Contents = styled.div`
+const Contents = styled.div<{ viewDetails: boolean }>`
   font-weight: 300;
   white-space: pre-line;
   overflow-y: scroll;

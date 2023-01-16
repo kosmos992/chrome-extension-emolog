@@ -40,7 +40,7 @@ const BookmarkItem = ({ book, booksArr, setBookmarkArr }) => {
       <BookItem>
         <Button
           size="long"
-          fontsize="middle"
+          fontSize="middle"
           onClick={() => (location.href = `${url}`)}
         >
           <Anchor>{name}</Anchor>
