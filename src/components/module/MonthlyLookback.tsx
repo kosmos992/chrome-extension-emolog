@@ -56,7 +56,12 @@ const ButtonContain = styled.span`
 const MonthlyLookback = ({ setHidenCard }) => {
   const dispatch = useDispatch();
   const palettes = useSelector(selectPalettes);
-  const [topColors, setTopColors] = useState<string[]>([]);
+  const [topColors, setTopColors] = useState([
+    '#F6F6F6',
+    '#F6F6F6',
+    '#F6F6F6',
+    '#F6F6F6',
+  ]);
   const currentMonth = dayjs(new Date()).format('MM');
   const option = {
     fps: 60,
@@ -72,8 +77,9 @@ const MonthlyLookback = ({ setHidenCard }) => {
   useEffect(() => {
     const loadData = async () => {
       const [code, topColorArr] = await topFourColors();
-      // console.log(code);
-      // console.log(topColorArr);
+      console.log(code);
+      console.log(topColorArr);
+      console.log(`${palettes[code][topColorArr[0]]}`);
       if (topColorArr.length >= 4) {
         setTopColors([
           `${palettes[code][topColorArr[0]]}`,
@@ -108,8 +114,10 @@ const MonthlyLookback = ({ setHidenCard }) => {
           `${palettes[code][topColorArr[0]]}`,
           `${palettes[code][topColorArr[0]]}`,
         ]);
+        console.log('it ends here');
         return;
       }
+      console.log('dont come here');
       setTopColors(['#E7AF8D', '#F0DCB1', '#BEB5BF', '#A2A987']); // 값이 안들어왔을 경우 보여지는 임의의 색상
     };
     loadData();
