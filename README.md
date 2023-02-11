@@ -1,4 +1,4 @@
-# '오무: 오늘의 무드'의 크롬 익스텐션 버전입니다
+# '오무: 오늘의 무드' - 크롬 익스텐션
 
 스토어 링크 - https://chrome.google.com/webstore/detail/omu/mionnpndbldjcfmgolfnnpkfghgmfgai?hl=ko
 
