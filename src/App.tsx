@@ -4,8 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 
-const App: React.FC = () => {
-  console.log('hi');
+const App = () => {
   return (
     <div className="App">
       <Home />

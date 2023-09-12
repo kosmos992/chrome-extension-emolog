@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../redux/hooks';
 import { ContentLayout } from '../atoms/Layouts';
 import Header from '../module/Header';
 import MoodSelector from '../module/MoodSelector';
@@ -21,36 +21,38 @@ const Browser = styled.div`
     max-width: 1023px;
   }
 `;
+
 const Home = () => {
-  const { modalType } = useSelector(selectModal);
-  const [hidenCard, setHidenCard] = useState(false);
-  const [lookbackRefresh, setLookbackRefresh] = useState(-1);
+  const { modalType } = useAppSelector(selectModal);
+  const [hiddenCard, setHiddenCard] = useState(false);
+  const [lookbackRefresh, setLookbackRefresh] = useState(false);
   const lookbackRefresher = () => {
-    setLookbackRefresh(lookbackRefresh * -1);
+    setLookbackRefresh(!lookbackRefresh);
   };
 
-  const [paletteRefresh, setPaletteRefresh] = useState(-1);
+  const [paletteRefresh, setPaletteRefresh] = useState(false);
   const paletteRefresher = () => {
-    setPaletteRefresh(paletteRefresh * -1);
+    setPaletteRefresh(!paletteRefresh);
   };
 
-  const [dataRefresh, setDataRefresh] = useState(-1);
+  const [dataRefresh, setDataRefresh] = useState(false);
   const dataRefresher = () => {
-    setDataRefresh(dataRefresh * -1);
+    setDataRefresh(!dataRefresh);
   };
+
   useEffect(() => {
     if (modalType === 'LookbackModal' || modalType === 'MonthlyModal') {
-      setHidenCard(true);
+      setHiddenCard(true);
     } else {
-      setHidenCard(false);
+      setHiddenCard(false);
     }
   }, [modalType]);
 
   return (
     <Browser>
-      <Header dataRefresh={dataRefresh} setHidenCard={setHidenCard} />
+      <Header dataRefresh={dataRefresh} setHiddenCard={setHiddenCard} />
       <ContentLayout>
-        {hidenCard ? null : (
+        {hiddenCard ? null : (
           <div>
             <MoodSelector
               lookbackRefresher={lookbackRefresher}
@@ -60,7 +62,7 @@ const Home = () => {
           </div>
         )}
         <GlobalModal
-          setHidenCard={setHidenCard}
+          setHiddenCard={setHiddenCard}
           lookbackRefresh={lookbackRefresh}
           paletteRefresher={paletteRefresher}
         />

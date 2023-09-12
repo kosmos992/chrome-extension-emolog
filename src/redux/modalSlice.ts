@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 
-const initialState = {
+interface InitialModalState {
+  modalType: string;
+  isOpen: boolean;
+}
+
+const initialState: InitialModalState = {
   modalType: '',
   isOpen: false,
 };
@@ -21,6 +27,6 @@ const modalSlice = createSlice({
 });
 
 export const { openModal, closeModal } = modalSlice.actions;
-export const selectModal = state => state.modal;
+export const selectModal = (state: RootState) => state.modal;
 
 export default modalSlice.reducer;

@@ -53,7 +53,7 @@ const ButtonContain = styled.span`
   opacity: 0.4;
 `;
 
-const MonthlyLookback = ({ setHidenCard }) => {
+const MonthlyLookback = ({ setHiddenCard }) => {
   const dispatch = useDispatch();
   const palettes = useSelector(selectPalettes);
   const [topColors, setTopColors] = useState([
@@ -71,7 +71,7 @@ const MonthlyLookback = ({ setHidenCard }) => {
 
   const handleCloseModal = () => {
     dispatch(closeModal());
-    setHidenCard(false);
+    setHiddenCard(false);
   };
 
   useEffect(() => {

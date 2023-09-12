@@ -10,7 +10,17 @@ const MODAL_TYPES = {
   LookbackModal: 'LookbackModal',
 };
 
-function GlobalModal({ lookbackRefresh, paletteRefresher, setHidenCard }) {
+interface Props {
+  lookbackRefresh: boolean;
+  paletteRefresher: () => void;
+  setHiddenCard: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const GlobalModal = ({
+  lookbackRefresh,
+  paletteRefresher,
+  setHiddenCard,
+}: Props) => {
   const MODAL_COMPONENTS = [
     {
       type: MODAL_TYPES.ThemeModal,
@@ -18,14 +28,14 @@ function GlobalModal({ lookbackRefresh, paletteRefresher, setHidenCard }) {
     },
     {
       type: MODAL_TYPES.MonthlyModal,
-      component: <MonthlyLookback setHidenCard={setHidenCard} />,
+      component: <MonthlyLookback setHiddenCard={setHiddenCard} />,
     },
     {
       type: MODAL_TYPES.LookbackModal,
       component: (
         <LookBack
           lookbackRefresh={lookbackRefresh}
-          setHidenCard={setHidenCard}
+          setHiddenCard={setHiddenCard}
         />
       ),
     },
@@ -38,9 +48,9 @@ function GlobalModal({ lookbackRefresh, paletteRefresher, setHidenCard }) {
   });
 
   const renderModal = () => {
-    return findModal.component;
+    return findModal?.component;
   };
   return <div style={{ display: 'flex', width: '100%' }}>{renderModal()}</div>;
-}
+};
 
 export default GlobalModal;

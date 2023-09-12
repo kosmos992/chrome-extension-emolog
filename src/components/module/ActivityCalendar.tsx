@@ -5,13 +5,13 @@ import {
   DEFAULT_WEEKDAY_LABELS,
   generateEmptyData,
   getMonthLabels,
-  getTheme,
+  // getTheme,
   groupByWeeks,
   MIN_DISTANCE_MONTH_LABELS,
   NAMESPACE,
 } from './utils';
 import { toast } from 'react-toastify';
-import tinycolor from 'tinycolor2';
+// import tinycolor from 'tinycolor2';
 import dayjs from 'dayjs';
 
 function ActivityCalendar({
@@ -43,7 +43,7 @@ function ActivityCalendar({
   const weeks = groupByWeeks(data, weekStart, year);
   console.log(weeks);
   const textHeight = hideMonthLabels ? 0 : fontSize + 2 * blockMargin;
-  const theme = getTheme(themeProp, color);
+  // const theme = getTheme(themeProp, color);
   const labels = Object.assign({}, DEFAULT_LABELS, labelsProp);
   const total = data.filter(each => each.moodPaletteDetails !== null);
   const totalCount = total.length;
@@ -68,7 +68,7 @@ function ActivityCalendar({
       <>
         {showWeekdayLabels && (
           <g style={style}>
-            {weeks[1].map((day, y) => {
+            {weeks[1].map((day: any, y) => {
               if (!day || y % 2 === 0) {
                 return null;
               }
@@ -130,7 +130,7 @@ function ActivityCalendar({
   function renderBlocks() {
     return weeks
       .map((week, weekIndex) =>
-        week.map((day, dayIndex) => {
+        week.map((day: any, dayIndex) => {
           if (!day) {
             return null;
           }
@@ -200,21 +200,17 @@ function ActivityCalendar({
   }
 
   const { width, height } = getDimensions();
-  const additionalStyles = {
-    maxWidth: width,
-    // Required for correct colors in CSS loading animation
-    [`--${NAMESPACE}-loading`]: theme.level0,
-    [`--${NAMESPACE}-loading-active`]: tinycolor(theme.level0)
-      .darken(8)
-      .toString(),
-  };
+  // const additionalStyles = {
+  //   maxWidth: width,
+  //   // Required for correct colors in CSS loading animation
+  //   [`--${NAMESPACE}-loading`]: theme.level0,
+  //   [`--${NAMESPACE}-loading-active`]: tinycolor(theme.level0)
+  //     .darken(8)
+  //     .toString(),
+  // };
 
   return (
-    <article
-      className="ActivityCalendar"
-      style={{ ...style, ...additionalStyles }}
-      {...otherProps}
-    >
+    <article className="ActivityCalendar" style={{ ...style }} {...otherProps}>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         {!loading && renderLabels()}
         {renderBlocks()}

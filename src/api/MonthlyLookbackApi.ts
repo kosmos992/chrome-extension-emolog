@@ -19,7 +19,7 @@ export const topFourColors = async () => {
     console.log(res.allMood);
     const colorCodeArr = res.allMood.map((each: moodDataSet) => each.moodCode);
     // 색상별 개수 요약 {"a":2,"b":2,"c":1}
-    let colorSummary = {};
+    const colorSummary: { [key: number]: number } = {};
     colorCodeArr.forEach((x: number) => {
       colorSummary[x] = (colorSummary[x] || 0) + 1;
     });
@@ -29,7 +29,7 @@ export const topFourColors = async () => {
         return b[1] - a[1];
       }
     );
-    const topFourColors = [];
+    const topFourColors: number[] = [];
     for (let el of colorSorted) {
       topFourColors.push(Number(el[0]));
     }

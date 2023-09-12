@@ -210,10 +210,10 @@ const FriendModal = ({ children }) => {
   );
 };
 
-const LookBackModal = ({ children, setHidenCard }) => {
+const LookBackModal = ({ children, setHiddenCard }) => {
   const dispatch = useDispatch();
   const handleCloseModal = () => {
-    setHidenCard(false);
+    setHiddenCard(false);
     dispatch(closeModal());
   };
   return (

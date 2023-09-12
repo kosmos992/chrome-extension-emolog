@@ -28,14 +28,21 @@ const GnbLayout = styled.div`
   min-width: 120px;
 `;
 
-function Header({ dataRefresh, setHidenCard }) {
+interface Props {
+  dataRefresh: boolean;
+  setHiddenCard: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Header = ({ dataRefresh, setHiddenCard }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const onClick = () => {
     setIsOpen(!isOpen);
   };
+
   const ref = useRef<HTMLDivElement>(null);
-  const clickOut = e => {
-    if (isOpen && ref.current && !ref.current.contains(e.target)) {
+
+  const clickOut = (e: MouseEvent) => {
+    if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -63,13 +70,13 @@ function Header({ dataRefresh, setHidenCard }) {
           <GnbLayout ref={ref}>
             <User onClick={onClick}>USERNAME</User>
             {isOpen ? (
-              <Nav dataRefresh={dataRefresh} setHidenCard={setHidenCard} />
+              <Nav dataRefresh={dataRefresh} setHidenCard={setHiddenCard} />
             ) : null}
           </GnbLayout>
         </div>
       </HeaderWrapper>
     </>
   );
-}
+};
 
 export default Header;

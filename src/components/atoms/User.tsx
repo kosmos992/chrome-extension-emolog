@@ -19,7 +19,7 @@ const Username = styled.span`
 `;
 
 const User = ({ onClick, children }) => {
-  const [palette, setPalette] = useState(0);
+  const [palette, setPalette] = useState(null);
   const [moodCode, setMoodCode] = useState(-1);
   const palettes = useSelector(selectPalettes);
   const displayName = '메뉴';

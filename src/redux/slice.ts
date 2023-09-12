@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import type { RootState } from './store';
 
-const initialState = {
+interface InitialPalettesState {
+  palettes: string[][];
+}
+
+const initialState: InitialPalettesState = {
   palettes: [
     [
       '#EE8242',
@@ -68,9 +73,9 @@ const initialState = {
 const slice = createSlice({
   name: 'palettes',
   initialState,
-  reducers: undefined,
+  reducers: {},
 });
 
-export const selectPalettes = state => state.palettes.palettes;
+export const selectPalettes = (state: RootState) => state.palettes.palettes;
 
 export default slice.reducer;

@@ -65,15 +65,19 @@ const CarouselBtnContainer = styled.div`
   padding-left: 40px;
 `;
 
-export const ThemeStore = ({ paletteRefresher }) => {
-  const dispatch = useDispatch();
-  const palettes = useSelector(selectPalettes);
+interface Props {
+  paletteRefresher: () => void;
+}
+
+export const ThemeStore = ({ paletteRefresher }: Props) => {
+  // const dispatch = useDispatch();
+  // const palettes = useSelector(selectPalettes);
 
   const [myPalette, setMyPalette] = useState(0);
   const [carouselIndex, setIndex] = useState(0);
 
   const [paletteEntry, SetPaletteEntry] = useState(0);
-  const [refresher, setRefresher] = useState(-1);
+  const [refresher, setRefresher] = useState(false);
   const lastIndex = 5;
   const paletteName = [
     '기본',
@@ -85,10 +89,10 @@ export const ThemeStore = ({ paletteRefresher }) => {
   ];
   const palettePoint = ['', '', '', '', '', ''];
 
-  const handleSet = paletteEntry => {
+  const handleSet = (paletteEntry: number) => {
     toast('팔레트 적용이 완료되었습니다');
     chrome.storage.local.set({ paletteCode: paletteEntry });
-    setRefresher(refresher * -1);
+    setRefresher(!refresher);
     paletteRefresher();
   };
 

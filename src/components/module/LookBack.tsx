@@ -13,7 +13,12 @@ import { useSelector } from 'react-redux';
 import { selectPalettes } from '../../redux/slice';
 import { debounce } from 'lodash';
 
-const LookBack = ({ lookbackRefresh, setHidenCard }) => {
+interface Props {
+  lookbackRefresh: boolean;
+  setHiddenCard: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LookBack = ({ lookbackRefresh, setHiddenCard }: Props) => {
   const palettes = useSelector(selectPalettes);
   const moodList = [
     '기쁨',
@@ -142,7 +147,7 @@ const LookBack = ({ lookbackRefresh, setHidenCard }) => {
   };
 
   return (
-    <LookBackModal setHidenCard={setHidenCard}>
+    <LookBackModal setHiddenCard={setHiddenCard}>
       <Wrapper>
         {data.length === 0 ? (
           <Announcement>기록이 존재하지 않습니다</Announcement>
